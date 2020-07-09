@@ -114,6 +114,28 @@ section {
     color: #fff;
 }
 
+/* ScrollToTop button */
+#scrollToTop {
+    border-radius: 70px;
+    background: black;
+    color: #fff;
+    border: 2px solid #fff;
+    position: fixed;
+    bottom: 40px;
+    right: 100px;
+    padding: 30px;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+#scrollToTop.show {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+
 
 /* ---- Theme Rules ---- */
 /* Landing Container Styles */

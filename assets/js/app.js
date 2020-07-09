@@ -1,12 +1,16 @@
 (function() {
   // Checks if after scrolling the section has changed
-  const oldSectionInView = null;
+  let oldSectionInView = null;
+  let windowHeight = null;
+  let scrollStatus = false;
   /* Creating navigation + hightlighting and activates domSectionListener(), if DOM is loaded */
   document.addEventListener('DOMContentLoaded', function() {
     createNavigation();
     highlightNavigation(getSectiontInView());
     domSectionListener();
     scrollToSection();
+    windowHeight = window.innerHeight;
+    scrollToTop();
   });
 
   /**
@@ -89,7 +93,7 @@
     if (oldSectionInView !== currentSectionInView) {
       getNaviItems.forEach(item => item.classList.remove('show'));
       getNaviItems[currentSectionInView].classList.add('show');
-      currentSection = currentSectionInView;
+      oldSectionInView = currentSectionInView;
     }
   }
 
@@ -107,7 +111,32 @@
     );
   }
 
+  /**
+   * @description Shows and hides scrollToTop button
+   */
+  function scrollToTopVibility() {
+    const checkPosition =
+      document.querySelector('#main-content').getBoundingClientRect().top +
+      windowHeight;
+    if (checkPosition < 500 && scrollStatus === false) {
+      document.querySelector('#scrollToTop').classList.toggle('show');
+      scrollStatus = true;
+    } else if (checkPosition > 500 && scrollStatus === true) {
+      document.querySelector('#scrollToTop').classList.toggle('show');
+      scrollStatus = false;
+    }
+  }
+
+  function scrollToTop() {
+    const scrollToTopButton = document.querySelector('#scrollToTop');
+    scrollToTopButton.addEventListener('click', function() {
+      console.log('topi');
+      document.querySelector('html').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
   document.addEventListener('scroll', function() {
     highlightNavigation(getSectiontInView());
+    scrollToTopVibility();
   });
 })();

@@ -45,6 +45,12 @@ p {
     color: #eee;
 }
 
+a.show {
+    background: red;
+    padding: 10px;
+    color: #fff
+}
+
 /* ---- Layout Rules ---- */
 main {
     margin: 10vh 1em 10vh;

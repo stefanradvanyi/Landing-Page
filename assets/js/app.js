@@ -3,6 +3,8 @@
   document.addEventListener('DOMContentLoaded', function() {
     createNavigation();
     domSectionListener();
+    const currentSectionInView = getSectiontInView();
+    highlightNavigation(currentSectionInView);
   });
 
   /**
@@ -26,7 +28,7 @@
   }
 
   /**
-   * @description Create the navigation
+   * @description Creates the navigation
    */
   function createNavigation() {
     const sections = getMainSections();
@@ -61,19 +63,29 @@
     let sectionCounter = 0;
     for (section of sections) {
       if (
-        section.getBoundingClientRect().top > 0 &&
-        section.getBoundingClientRect().bottom > 140
+        section.getBoundingClientRect().top > 0 ||
+        section.getBoundingClientRect().bottom > 160
       ) {
         break;
       }
       sectionCounter++;
     }
+
     return sectionCounter;
+  }
+
+  /**
+   * @description Adding a class to the navigation to show which secition is in the view
+   * @param {currentSectionInView} Contains the section number which is currently in the view
+   */
+  function highlightNavigation(currentSectionInView) {
+    const getNaviItems = document.querySelectorAll('#navbar__list a');
+    getNaviItems.forEach(item => item.classList.remove('show'));
+    getNaviItems[currentSectionInView].classList.add('show');
   }
 
   document.addEventListener('scroll', function() {
     const currentSectionInView = getSectiontInView();
-    console.log(currentSectionInView);
-    // testa = checkSectionInView(sections[0]);
+    highlightNavigation(currentSectionInView);
   });
 })();

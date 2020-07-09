@@ -20,6 +20,7 @@
       for (const mutation of mutationsList) {
         if (mutation.type === 'childList') {
           createNavigation();
+          highlightNavigation(getSectiontInView());
         }
       }
     };
@@ -38,7 +39,9 @@
     // console.log(sections);
     for (section of sections) {
       const liItem = document.createElement('li');
-      const aItem = `<a href='#'>${section.getAttribute('data-nav')}</a>`;
+      const aItem = `<a href="#${section.getAttribute(
+        'id'
+      )}">${section.getAttribute('data-nav')}</a>`;
       liItem.innerHTML = aItem;
       fragement.appendChild(liItem);
     }

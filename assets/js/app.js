@@ -114,7 +114,7 @@
   /**
    * @description Shows and hides scrollToTop button
    */
-  function scrollToTopVibility() {
+  function scrollToTopVisibility() {
     const checkPosition =
       document.querySelector('#main-content').getBoundingClientRect().top +
       windowHeight;
@@ -127,16 +127,18 @@
     }
   }
 
+  /**
+   * @description Scroll to top if clicking on button
+   */
   function scrollToTop() {
     const scrollToTopButton = document.querySelector('#scrollToTop');
     scrollToTopButton.addEventListener('click', function() {
-      console.log('topi');
       document.querySelector('html').scrollIntoView({ behavior: 'smooth' });
     });
   }
 
   document.addEventListener('scroll', function() {
     highlightNavigation(getSectiontInView());
-    scrollToTopVibility();
+    scrollToTopVisibility();
   });
 })();

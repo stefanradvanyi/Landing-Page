@@ -6,6 +6,7 @@
     createNavigation();
     highlightNavigation(getSectiontInView());
     domSectionListener();
+    scrollToSection();
   });
 
   /**
@@ -90,6 +91,20 @@
       getNaviItems[currentSectionInView].classList.add('show');
       currentSection = currentSectionInView;
     }
+  }
+
+  /**
+   * @description Scroll to the section by clicking on the navigation
+   */
+  function scrollToSection() {
+    const getNaviItems = document.querySelectorAll('#navbar__list a');
+    getNaviItems.forEach(item =>
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(e.target.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      })
+    );
   }
 
   document.addEventListener('scroll', function() {

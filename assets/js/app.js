@@ -1,10 +1,11 @@
 (function() {
-  /* Creating navigation and activates domSectionListener(), if DOM is loaded */
+  // Checks if after scrolling the section has changed
+  const oldSectionInView = null;
+  /* Creating navigation + hightlighting and activates domSectionListener(), if DOM is loaded */
   document.addEventListener('DOMContentLoaded', function() {
     createNavigation();
+    highlightNavigation(getSectiontInView());
     domSectionListener();
-    const currentSectionInView = getSectiontInView();
-    highlightNavigation(currentSectionInView);
   });
 
   /**
@@ -80,12 +81,15 @@
    */
   function highlightNavigation(currentSectionInView) {
     const getNaviItems = document.querySelectorAll('#navbar__list a');
-    getNaviItems.forEach(item => item.classList.remove('show'));
-    getNaviItems[currentSectionInView].classList.add('show');
+    // Just change classes (removing & adding) if section in the view is another one
+    if (oldSectionInView !== currentSectionInView) {
+      getNaviItems.forEach(item => item.classList.remove('show'));
+      getNaviItems[currentSectionInView].classList.add('show');
+      currentSection = currentSectionInView;
+    }
   }
 
   document.addEventListener('scroll', function() {
-    const currentSectionInView = getSectiontInView();
-    highlightNavigation(currentSectionInView);
+    highlightNavigation(getSectiontInView());
   });
 })();

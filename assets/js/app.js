@@ -3,6 +3,8 @@
   let oldSectionInView = null;
   let windowHeight = null;
   let scrollStatus = false;
+  let numberSections = 0;
+
   /* Creating navigation + hightlighting and activates domSectionListener(), if DOM is loaded */
   document.addEventListener('DOMContentLoaded', function() {
     createNavigation();
@@ -11,6 +13,13 @@
     scrollToSection();
     windowHeight = window.innerHeight;
     scrollToTop();
+    formNewSection();
+    numberSections = getNumberSections();
+  });
+
+  document.addEventListener('scroll', function() {
+    highlightNavigation(getSectiontInView());
+    scrollToTopVisibility();
   });
 
   /**
@@ -24,8 +33,10 @@
     const callback = function(mutationsList, observer) {
       for (const mutation of mutationsList) {
         if (mutation.type === 'childList') {
+          oldSectionInView = null;
           createNavigation();
           highlightNavigation(getSectiontInView());
+          scrollToSection();
         }
       }
     };
@@ -41,7 +52,6 @@
     const sections = getMainSections();
     const fragement = document.createDocumentFragment();
     const nav = document.querySelector('#navbar__list');
-    // console.log(sections);
     for (section of sections) {
       const liItem = document.createElement('li');
       const aItem = `<a href="#${section.getAttribute(
@@ -61,6 +71,14 @@
    */
   function getMainSections() {
     return document.querySelectorAll('.main-section');
+  }
+
+  /**
+   * @description Counts number of sections
+   * @return Returns number of sections
+   */
+  function getNumberSections() {
+    return document.querySelectorAll('.main-section').length;
   }
 
   /**
@@ -88,9 +106,9 @@
    * @param {currentSectionInView} Contains the section number which is currently in the view
    */
   function highlightNavigation(currentSectionInView) {
-    const getNaviItems = document.querySelectorAll('#navbar__list a');
-    // Just change classes (removing & adding) if section in the view is another one
+    // Just change classes (removing & adding) if section in the view is has changed
     if (oldSectionInView !== currentSectionInView) {
+      const getNaviItems = document.querySelectorAll('#navbar__list a');
       getNaviItems.forEach(item => item.classList.remove('show'));
       getNaviItems[currentSectionInView].classList.add('show');
       oldSectionInView = currentSectionInView;
@@ -137,8 +155,63 @@
     });
   }
 
-  document.addEventListener('scroll', function() {
-    highlightNavigation(getSectiontInView());
-    scrollToTopVisibility();
-  });
+  /**
+   * @description Validation of form and invokes createNewSection()
+   */
+  function formNewSection() {
+    const addNewSectionButton = document.querySelector('#buttonNewSection');
+    addNewSectionButton.addEventListener('click', function() {
+      const validation = formValidation();
+      if (validation) {
+        createNewSection();
+        formClear();
+      }
+    });
+  }
+
+  /**
+   * @description Creates the entire new section (html + content)
+   */
+  function createNewSection() {
+    numberSections++;
+    const section = document.createElement('section');
+    section.setAttribute('id', `section${numberSections}`);
+    section.setAttribute(
+      'data-nav',
+      `${document.querySelector('#inputSectionNav').value}`
+    );
+    section.setAttribute('class', 'main-section');
+    const div = document.createElement('div');
+    div.setAttribute('class', 'landing__container');
+    const header = document.createElement('h2');
+    header.innerHTML = document.querySelector('#inputSectionHeader').value;
+    const content = document.createElement('p');
+    content.innerHTML = document.querySelector('#inputSectionText').value;
+    div.appendChild(header);
+    div.appendChild(content);
+    section.appendChild(div);
+    document.querySelector('#main-content').appendChild(section);
+  }
+
+  function formValidation() {
+    let validation = false;
+
+    if (
+      document.querySelector('#inputSectionHeader').value.length > 0 &&
+      document.querySelector('#inputSectionText').value.length > 0 &&
+      document.querySelector('#inputSectionText').value.length > 0
+    ) {
+      validation = true;
+    }
+    return validation;
+  }
+
+  /**
+   * @description Clears the form
+   */
+  function formClear() {
+    document.querySelector('#inputSectionHeader').value = '';
+    document.querySelector('#inputSectionNav').value = '';
+    document.querySelector('#inputSectionText').value = '';
+  }
 })();

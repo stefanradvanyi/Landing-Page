@@ -2,79 +2,138 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Manipulating the DOM</title>
-  <!-- Load Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:900|Merriweather&display=swap" rel="stylesheet">
-  <!-- Load Styles -->
-  <link href="assets/css/styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"
+        integrity="sha512-M+hXwltZ3+0nFQJiVke7pqXY7VdtWW2jVG31zrml+eteTP7im25FdwtLhIBTWkaHRQyPrhO2uy8glLMHZzhFog=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <title>Landing-Page</title>
+
 </head>
 
 <body>
-  <!-- HTML Follows BEM naming conventions 
-  IDs are only used for sections to connect menu achors to sections -->
-  <header class="page__header">
-    <nav class="navbar__menu">
-      <!-- Navigation starts as empty UL that will be populated with JS -->
-      <ul id="navbar__list"></ul>
-    </nav>
-  </header>
-  <main id="main-content">
-    <header class="main__hero">
-      <h1>Landing Page </h1>
+
+    <header id="main-header">
+        <div class="main-wrapper">
+            <h1><a href="#">MyPage</a></h1>
+            <nav id="main-menu">
+                <ul>
+                </ul>
+            </nav>
+            <a class="close-btn"><i class="fa fa-times fa-2x"></i></a>
+            <a class="open-btn"><i class="fa fa-bars fa-2x"></i></a>
+        </div>
     </header>
-    <!-- Each Section has an ID (used for the anchor) and 
-    a data attribute that will populate the li node.
-    Adding more sections will automatically populate nav.
-    The first section is set to active class by default -->
-    <section id="section1" data-nav="Section 1" class="main-section">
-      <div class="landing__container">
-        <h2>Section 1</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra
-          dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus
-          imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget
-          bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet
-          elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo
-          nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie
-          semper in tellus. Sed congue et odio sed euismod.</p>
 
-        <p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel
-          luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur
-          porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
-      </div>
-    </section>
-    <section id="section2" data-nav="Section 2" class="main-section">
-      <div class="landing__container">
-        <h2>Section 2</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra
-          dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus
-          imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget
-          bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet
-          elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo
-          nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie
-          semper in tellus. Sed congue et odio sed euismod.</p>
-
-        <p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel
-          luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur
-          porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
-      </div>
-    </section>
-    <section id="section3" data-nav="Add section" class="main-section">
-      <div class="landing__container">
-        <h2>Add new section to page</h2>
-        <label for="inputSectionHeader">Header of new section: </label> <input id="inputSectionHeader" />
-        <label for="inputSectionNav">Navigation name of new section: </label><input id="inputSectionNav" />
-        <label for="inputSectionNav">Text of new section: </label><textarea id="inputSectionText"></textarea>
-        <span id="buttonNewSection">+ Add new section</span>
-    </section>
-  </main>
-  <div id="scrollToTop">TOP </div>
-  <footer class="page__footer">
-    <p>&copy Udacity</p>
-  </footer>
-  <script src="assets/js/app.js"></script>
+    <main id="main-content" class="main-wrapper">
+        <section id="section1" data-nav="Portfolio" class="main-section">
+            <h2>Portoflio</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, similique! Illo temporibus aperiam
+                blanditiis, architecto quaerat deserunt minima delectus cumque praesentium a similique non
+                reiciendis
+                ratione perferendis enim voluptatum modi? Voluptas ducimus atque deleniti beatae. Voluptatum porro
+                obcaecati aliquid velit consectetur perferendis tempore neque temporibus, nam libero, similique
+                rerum
+                quidem.</p>
+            <figure>
+                <img src="assets/img/magazine-1.jpg" alt="Magazine" />
+                <figcaption>Caption caption caption</figcaption>
+            </figure>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, similique! Illo temporibus aperiam
+                blanditiis, architecto quaerat deserunt minima delectus cumque praesentium a similique non
+                reiciendis
+                ratione perferendis enim voluptatum modi? Voluptas ducimus atque deleniti beatae. Voluptatum porro
+                obcaecati aliquid velit consectetur perferendis tempore neque temporibus, nam libero, similique
+                rerum
+                quidem.</p>
+            <ul>
+                <li>Point 1</li>
+                <li>Point 2</li>
+                <li>Point 3</li>
+                <li>Point 4</li>
+            </ul>
+            <img src="assets/img/taco.jpg" alt="Taco" />
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo obcaecati perspiciatis, dolores iste
+                perferendis hic excepturi quod eveniet impedit quis dolorum, cupiditate quibusdam reprehenderit
+                totam ea
+                quia aliquam praesentium dicta sequi. Temporibus aliquam sequi minima non nesciunt autem iste,
+                cumque
+                doloribus, placeat tempore quas quae commodi sunt saepe, maxime eveniet!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officiis provident, tempore earum
+                inventore
+                modi delectus deleniti consequuntur at quisquam.</p>
+        </section>
+        <section id="section2" data-nav="About" class="main-section">
+            <h2>About</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, similique! Illo temporibus aperiam
+                blanditiis, architecto quaerat deserunt minima delectus cumque praesentium a similique non
+                reiciendis
+                ratione perferendis enim voluptatum modi? Voluptas ducimus atque deleniti beatae. Voluptatum porro
+                obcaecati
+                aliquid velit consectetur perferendis tempore neque temporibus, nam libero, similique rerum quidem.
+            </p>
+            <figure>
+                <img src="assets/img/magazine-1.jpg" alt="Magazine" />
+                <figcaption>This is a caption. This is a caption</figcaption>
+            </figure>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, similique! Illo temporibus aperiam
+                blanditiis, architecto quaerat deserunt minima delectus cumque praesentium a similique non
+                reiciendis
+                ratione perferendis enim voluptatum modi? Voluptas ducimus atque deleniti beatae. Voluptatum porro
+                obcaecati
+                aliquid velit consectetur perferendis tempore neque temporibus, nam libero, similique rerum quidem.
+            </p>
+            <ul>
+                <li>Point 1</li>
+                <li>Point 2</li>
+                <li>Point 3</li>
+                <li>Point 4</li>
+            </ul>
+            <img src="assets/img/taco.jpg" alt="Taco" />
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo obcaecati perspiciatis, dolores iste
+                perferendis hic excepturi quod eveniet impedit quis dolorum, cupiditate quibusdam reprehenderit
+                totam ea
+                quia aliquam praesentium dicta sequi. Temporibus aliquam sequi minima non nesciunt autem iste,
+                cumque
+                doloribus, placeat tempore quas quae commodi sunt saepe, maxime eveniet!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officiis provident, tempore earum
+                inventore
+                modi
+                delectus deleniti consequuntur at quisquam.</p>
+        </section>
+        <section id="section3" data-nav="New Section" class="main-section">
+            <h2>Add new section to page</h2>
+            <p>Here you can add some further sections, which are also added to the navigations. Feel free to add
+                someones.</p>
+            <form>
+                <input id="inputSectionHeader" placeholder="Header of new section" aria-label="Header of new section" />
+                <input id="inputSectionNav" placeholder="Navigation name of new section"
+                    aria-label="Navigation name of new section" />
+                <textarea id="inputSectionText" placeholder="Text of new section"
+                    aria-label="Text of new section"></textarea>
+                <span id="buttonNewSection">+ Add new section</span>
+            </form>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo obcaecati perspiciatis, dolores iste
+                perferendis hic excepturi quod eveniet impedit quis dolorum, cupiditate quibusdam reprehenderit
+                totam ea
+                quia aliquam praesentium dicta sequi. Temporibus aliquam sequi minima non nesciunt autem iste,
+                cumque
+                doloribus, placeat tempore quas quae commodi sunt saepe, maxime eveniet!
+            </p>
+            <figure>
+                <img src="assets/img/taco.jpg" alt="Magazine" />
+                <figcaption>Taco Taco Taco</figcaption>
+            </figure>
+        </section>
+    </main>
+    <footer id="main-footer" aria-hidden="true" tabindex="-1">
+        <div class="main-wrapper">(C) 2020 | Udacity Frontend Developer Nanodegree | Proect 02 - Landing Page</div>
+    </footer>
+    <div id="scrollToTop" aria-hidden="true" tabindex="-1">
+        <i class="fa fa-chevron-up fa-2x" aria-hidden="true"></i>
+    </div>
+    <script src="assets/js/app.js"></script>
 </body>
 
 </html>

@@ -5,14 +5,17 @@
   let scrollStatus = false;
   let numberSections = 0;
 
-  /* Creating navigation + hightlighting and activates domSectionListener(), if DOM is loaded */
+  /* Activates functions, if DOM is loaded */
   document.addEventListener('DOMContentLoaded', function() {
     createNavigation();
+    mobileMenu();
     highlightNavigation(getSectiontInView());
     domSectionListener();
     scrollToSection();
     windowHeight = window.innerHeight;
     scrollToTop();
+    scrollToTopVisibility();
+    calcScrollToTopPosition();
     formNewSection();
     numberSections = getNumberSections();
   });
@@ -20,6 +23,10 @@
   document.addEventListener('scroll', function() {
     highlightNavigation(getSectiontInView());
     scrollToTopVisibility();
+  });
+
+  window.addEventListener('resize', function() {
+    calcScrollToTopPosition();
   });
 
   /**
@@ -51,7 +58,7 @@
   function createNavigation() {
     const sections = getMainSections();
     const fragement = document.createDocumentFragment();
-    const nav = document.querySelector('#navbar__list');
+    const nav = document.querySelector('#main-menu ul');
     for (section of sections) {
       const liItem = document.createElement('li');
       const aItem = `<a href="#${section.getAttribute(
@@ -63,6 +70,49 @@
 
     nav.innerHTML = '';
     nav.appendChild(fragement);
+    hideMobileMenuIfClicked();
+  }
+
+  /**
+   * @description Closes the mobile menu, if user clicks on an item.
+   */
+  function hideMobileMenuIfClicked() {
+    const nav = document.querySelectorAll('#main-menu li a');
+    nav.forEach(navItem =>
+      navItem.addEventListener('click', function() {
+        const body = document.querySelector('body');
+        if (body.classList.contains('show')) {
+          body.classList.toggle('show');
+        }
+      })
+    );
+  }
+
+  /**
+   * @description Open & close mobile menu
+   */
+  function mobileMenu() {
+    const selector = document.querySelectorAll('.open-btn, .close-btn');
+    const selectorBody = document.querySelector('body');
+    const menuStatus = 0;
+    selector.forEach(select =>
+      select.addEventListener('click', e => {
+        selectorBody.classList.toggle('show');
+        const sheet = window.document.styleSheets[0];
+        if (menuStatus === 0) {
+          sheet.insertRule(
+            '#main-menu { transition: ease-in-out; transition-duration: 0.8s;}',
+            sheet.cssRules.length
+          );
+          menuStatus = 1;
+        } else {
+          setTimeout(() => {
+            sheet.removeRule(sheet.cssRules.length - 1);
+          }, 1000);
+          menuStatus = 0;
+        }
+      })
+    );
   }
 
   /**
@@ -108,7 +158,7 @@
   function highlightNavigation(currentSectionInView) {
     // Just change classes (removing & adding) if section in the view is has changed
     if (oldSectionInView !== currentSectionInView) {
-      const getNaviItems = document.querySelectorAll('#navbar__list a');
+      const getNaviItems = document.querySelectorAll('#main-menu a');
       getNaviItems.forEach(item => item.classList.remove('show'));
       getNaviItems[currentSectionInView].classList.add('show');
       oldSectionInView = currentSectionInView;
@@ -119,7 +169,7 @@
    * @description Scroll to the section by clicking on the navigation
    */
   function scrollToSection() {
-    const getNaviItems = document.querySelectorAll('#navbar__list a');
+    const getNaviItems = document.querySelectorAll('#main-menu a');
     getNaviItems.forEach(item =>
       item.addEventListener('click', function(e) {
         e.preventDefault();
@@ -127,6 +177,17 @@
         target.scrollIntoView({ behavior: 'smooth' });
       })
     );
+  }
+
+  /**
+   * @description Calculates for scrollToTop button CSS 'left' position
+   */
+  function calcScrollToTopPosition() {
+    const scrolToTopPosition = document
+      .querySelector('#main-content')
+      .getBoundingClientRect().right;
+    const scrollToTop = document.querySelector('#scrollToTop');
+    scrollToTop.style.left = `${scrolToTopPosition - 50}px`;
   }
 
   /**
@@ -193,6 +254,9 @@
     document.querySelector('#main-content').appendChild(section);
   }
 
+  /**
+   * @description Check if all form fields aren' blank
+   */
   function formValidation() {
     let validation = false;
 

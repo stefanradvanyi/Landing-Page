@@ -94,18 +94,13 @@ textarea:focus {
   border: 2px solid #ff7a59 !important;
 }
 
-#buttonNewSection {
-  background: #ff7a59;
-  color: #fff;
-  padding: 15px;
-  margin: 20px 0 40px 0;
-  display: block;
-  border-radius: 10px;
-  cursor: pointer;
-  display: inline-block;
+.main-wrapper {
+  width: 95%;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
-/****** Header ****** */
+/****** Elements ****** */
 #main-header {
   background: #f5f8fa;
   min-height: 70px;
@@ -133,10 +128,27 @@ textarea:focus {
   margin-right: 20px;
 }
 
-.main-wrapper {
-  width: 95%;
-  margin: 0 auto;
-  max-width: 1200px;
+#main-header .open-btn,
+#main-header .close-btn {
+  position: fixed;
+  top: 15px;
+  right: 53px;
+  cursor: pointer;
+  z-index: 4;
+  -webkit-transition: ease-in-out;
+  transition: ease-in-out;
+  -webkit-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+#main-header .open-btn {
+  visibility: visible;
+  opacity: 1;
+}
+
+#main-header .close-btn {
+  visibility: hidden;
+  opacity: 0;
 }
 
 #main-menu {
@@ -183,40 +195,17 @@ textarea:focus {
   font-weight: bold;
 }
 
+body.show {
+  overflow: hidden;
+}
+
 body.show #main-menu {
   -webkit-transform: translateX(0px);
           transform: translateX(0px);
 }
 
-body.show {
-  overflow: hidden;
-}
-
 body.show #main-header {
   position: static;
-}
-
-#main-header .open-btn,
-#main-header .close-btn {
-  position: fixed;
-  top: 15px;
-  right: 53px;
-  cursor: pointer;
-  z-index: 4;
-  -webkit-transition: ease-in-out;
-  transition: ease-in-out;
-  -webkit-transition-duration: 0.8s;
-          transition-duration: 0.8s;
-}
-
-#main-header .open-btn {
-  visibility: visible;
-  opacity: 1;
-}
-
-#main-header .close-btn {
-  visibility: hidden;
-  opacity: 0;
 }
 
 body.show #main-header .open-btn {
@@ -294,6 +283,18 @@ body.show #main-header .close-btn {
   transition: 0.5s;
 }
 
+#buttonNewSection {
+  background: #ff7a59;
+  color: #fff;
+  padding: 15px;
+  margin: 20px 0 40px 0;
+  display: block;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/****** Desktop ****** */
 @media (min-width: 1000px) {
   #main-header .main-wrapper {
     display: -ms-grid;

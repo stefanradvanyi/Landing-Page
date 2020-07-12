@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+/****** Desktop ****** */
+@media(min-width: 1000px) {
+    #main-header {
+        .main-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+        }
+
+        h1 {
+            align-self: center;
+        }
+
+        .open-btn,
+        .close-btn  {
+            display: none;
+        }
+    }
+
+    #main-menu {
+        position: static;
+        width: auto;
+        height: auto;
+        font-size: 20px;
+        left: 0;
+        justify-self: end;
+        transform:  none;
+        transition: none;
+        background: none;
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            gap: 10px;
+            background: none;
+
+            li {
+                border: none;
+                margin: 0;
+
+                &:nth-child(1) {
+                    padding: 0;
+                }
+
+                a { 
+                    padding: 5px 40px 0 40px;
+                    display: block;
+                    margin: 0;
+                }
+            }
+        }
+    } 
+}
+
+@media(min-width: 1200px) {
+    #main-header {
+        .main-wrapper {
+            padding: 0 40px 0 100px;
+        }
+    }
+}
